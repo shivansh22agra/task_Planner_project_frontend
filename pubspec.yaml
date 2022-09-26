@@ -30,10 +30,12 @@ dependencies:
   awesome_widgets: ^0.0.6
   cache_manager: ^1.0.0+4
   cupertino_icons: ^1.0.2
+  fluro: ^2.0.3
   flutter:
     sdk: flutter
   google_fonts: ^3.0.1
   http: ^0.13.5
+  intl: ^0.17.0
   sizer: ^2.0.15
 
 dev_dependencies:
