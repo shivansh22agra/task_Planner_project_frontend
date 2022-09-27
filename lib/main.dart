@@ -1,5 +1,10 @@
+// import 'package:easy_api/example/easy_api_example/lib/repository/todo.network.dart';
+// import 'package:easy_api/example/easy_api_example/lib/repository/todo.repository.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+//import 'package:task_planner_frontend/ApiService/Easy_api.dart';
 import 'package:task_planner_frontend/screens/Home_Screen.dart';
+//import 'package:task_planner_frontend/taskNotifer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,9 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme:ThemeData.dark(),
+      theme: ThemeData.dark(),
       home: const Home_Screen(),
     );
   }
 }
-
