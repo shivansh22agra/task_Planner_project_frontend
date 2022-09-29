@@ -10,7 +10,7 @@
 
 class AppRoutes {
   static const HomeRoute = "/";
-  static const getRoute = "task/get/";
+  static const getRoute = "/task/get/";
   static const TaskDetailsRoute = "/task-details";
   static const CreateTaskRoute = "/create_task";
 
