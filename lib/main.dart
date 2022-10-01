@@ -2,6 +2,7 @@
 // import 'package:easy_api/example/easy_api_example/lib/repository/todo.repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task_planner_frontend/screens/Add_task.dart';
 //import 'package:task_planner_frontend/ApiService/Easy_api.dart';
 import 'package:task_planner_frontend/screens/Home_Screen.dart';
 import 'package:task_planner_frontend/screens/Splash_Screen.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark(),
       initialRoute: Splash_Screen.id,
       routes: {
+        Add_Task.id: (context) => const Add_Task(),
         Splash_Screen.id: (context) => const Splash_Screen(),
         Home_Screen.id: (context) => const Home_Screen(),
       },

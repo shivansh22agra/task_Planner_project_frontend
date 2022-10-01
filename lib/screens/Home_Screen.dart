@@ -7,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import 'package:task_planner_frontend/ApiClasses/taskClass.dart';
 import 'package:task_planner_frontend/ApiService/ApiService.dart';
 import 'package:http/http.dart' as http;
+import 'package:task_planner_frontend/screens/Add_task.dart';
 
 import '../app/colors.dart';
 // import 'package:task_planner_frontend/ApiService/ApiService.dart';
@@ -27,14 +28,7 @@ class _Home_ScreenState extends State<Home_Screen> {
   bool isShimmer = false;
   List<TaskGet> taskList = [];
   void fetchTaskDetails() async {
-    // TasksApi tasksApi = TasksApi( TaskNetwork(baseApiUrl: 'http://localhost:7000'));
-    // tasksApi.gettask().then((value) => print(value));
-
-    //  http.Response response =
-    //     await http.get(Uri.parse('http://192.168.1.3:3000/task/get'));
-    //ye 192.168.1.3 ipv4 address hai
-    //var data = jsonDecode(response.body);
-    //print(data);
+   
     ApiService apiService = ApiService();
     apiService.getTaskDetails(context).then((value) => {
           setState(() {
@@ -105,7 +99,7 @@ class _Home_ScreenState extends State<Home_Screen> {
       ),
       backgroundColor: Colors.black,
       body: RefreshIndicator(
-        onRefresh: () async{
+        onRefresh: () async {
           setState(() {
             isShimmer = false;
             taskList.clear();
@@ -185,7 +179,9 @@ class _Home_ScreenState extends State<Home_Screen> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            fetchTaskDetails();
+            Navigator.pushNamed(context, Add_Task.id);
+
+            //  fetchTaskDetails();
           },
           child: const Icon(
             Icons.add,
@@ -199,18 +195,64 @@ Widget shimmerContainer(context) {
   return Shimmer.fromColors(
       baseColor: K.lightBlack,
       highlightColor: K.violetColor,
-      child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.2,
-          width: MediaQuery.of(context).size.width * 1,
-          child: Row(
-            children: [
-              Container(
-                height: 30,
-                width: 100,
-                decoration: BoxDecoration(
-                    color: K.whiteColor,
-                    borderRadius: BorderRadius.circular(10)),
-              )
-            ],
-          )));
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(1),
+                bottomLeft: Radius.circular(1),
+                bottomRight: Radius.circular(20),
+              ),
+              color: K.whiteColor,
+            ),
+            height: MediaQuery.of(context).size.height * 0.2,
+            width: MediaQuery.of(context).size.width * 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        height: 20,
+                        width: 90,
+                        decoration: BoxDecoration(
+                            color: K.whiteColor,
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        height: 20,
+                        width: 90,
+                        decoration: BoxDecoration(
+                            color: K.whiteColor,
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        height: 20,
+                        width: 90,
+                        decoration: BoxDecoration(
+                            color: K.whiteColor,
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            )),
+      ));
 }
