@@ -14,14 +14,14 @@ class TaskGet {
 
 class TaskPostResponseModel {
   bool? status;
-   //String? data;
+   ///String? data;
   // String bookID;
 
   TaskPostResponseModel({this.status});
 
   factory TaskPostResponseModel.fromJson(json) {
     return TaskPostResponseModel(
-      //  data: json["data"] ?? '',
+       // data: json["message"] ?? '',
         status: json["status"] ?? '');
     //bookID: (json['book'] != null) ? json['book']['_id'] : '');
   }

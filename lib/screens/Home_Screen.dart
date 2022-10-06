@@ -170,7 +170,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                               Padding(
                                 padding: const EdgeInsets.all(9.0),
                                 child: Text(
-                                  details.task_title!,
+                                  details.task_title??"title",
                                   style: GoogleFonts.poppins(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500,
@@ -181,7 +181,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                               Padding(
                                 padding: const EdgeInsets.all(9.0),
                                 child: Text(
-                                  details.task_description!,
+                                  details.task_description??"description",
                                   style: GoogleFonts.poppins(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500,

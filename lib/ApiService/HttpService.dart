@@ -35,9 +35,10 @@ class HttpService {
    // var uuid = const Uuid();
    // SharedPreferences prefs = await SharedPreferences.getInstance();
     http.Response response = await http.post(Uri.parse(BASE_URL + endpoint),
-        headers: <String, String>{
-          // 'Content-Type': 'application/json; charset=UTF-8',
-          // 'x-auth-token': prefs.getString('AuthToken') ?? '',
+    
+       headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        //   'x-auth-token': prefs.getString('AuthToken') ?? '',
         //  'x-request-token': uuid.v4(),
         },
         body: requestModel);
@@ -46,7 +47,7 @@ class HttpService {
       return json.decode(response.body);
     } else if (response.statusCode == 401) {
       print("httpPost");
-      //  print(response.statusCode);
+        print(response.statusCode);
     //  HelperFunctions().session_expired(context, "Session Expired");
     } else {
       return json.decode(response.body);
