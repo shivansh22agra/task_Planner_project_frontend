@@ -28,7 +28,6 @@ class _Home_ScreenState extends State<Home_Screen> {
   bool isShimmer = false;
   List<TaskGet> taskList = [];
   void fetchTaskDetails() async {
-   
     ApiService apiService = ApiService();
     apiService.getTaskDetails(context).then((value) => {
           setState(() {
@@ -62,7 +61,10 @@ class _Home_ScreenState extends State<Home_Screen> {
 
   @override
   void initState() {
-    fetchTaskDetails();
+     fetchTaskDetails();
+  //  setState(() {
+  //     isShimmer = false;
+  //   });
     // TODO: implement initState
     super.initState();
   }
@@ -108,72 +110,11 @@ class _Home_ScreenState extends State<Home_Screen> {
         },
         child: ListView.builder(
             controller: _scrollController,
-            itemCount: taskList.length,
+            itemCount: isShimmer?taskList.length:5,
             itemBuilder: (context, int index) {
-              var details = taskList[index];
+             
               return isShimmer
-                  ? Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            color: K.lightBlack,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(1),
-                              bottomLeft: Radius.circular(1),
-                              bottomRight: Radius.circular(20),
-                            )),
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        width: MediaQuery.of(context).size.width * 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(9.0),
-                                  child: Text(
-                                    details.task_id.toString(),
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      color: K.whiteColor,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(9.0),
-                                  child: Text(
-                                    details.task_title!,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      color: K.whiteColor,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(9.0),
-                                  child: Text(
-                                    details.task_description!,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      color: K.whiteColor,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
+                  ? ListContainer(context, index)
                   : shimmerContainer(context);
             }),
       ),
@@ -188,6 +129,72 @@ class _Home_ScreenState extends State<Home_Screen> {
             color: Colors.white,
           )),
     );
+  }
+
+  Padding ListContainer(BuildContext context, int index) {
+     var details = taskList[index];
+    return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          color: K.lightBlack,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(1),
+                            bottomLeft: Radius.circular(1),
+                            bottomRight: Radius.circular(20),
+                          )),
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      width: MediaQuery.of(context).size.width * 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(9.0),
+                                child: Text(
+                                  details.task_id.toString(),
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    color: K.whiteColor,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(9.0),
+                                child: Text(
+                                  details.task_title!,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    color: K.whiteColor,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(9.0),
+                                child: Text(
+                                  details.task_description!,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    color: K.whiteColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
   }
 }
 

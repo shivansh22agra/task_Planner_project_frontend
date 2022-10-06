@@ -11,3 +11,18 @@ class TaskGet {
   //           "task_title": "pehtasktitle",
   //           "task_description": "pehla description",
 }
+
+class TaskPostResponseModel {
+  bool? status;
+   //String? data;
+  // String bookID;
+
+  TaskPostResponseModel({this.status});
+
+  factory TaskPostResponseModel.fromJson(json) {
+    return TaskPostResponseModel(
+      //  data: json["data"] ?? '',
+        status: json["status"] ?? '');
+    //bookID: (json['book'] != null) ? json['book']['_id'] : '');
+  }
+}
